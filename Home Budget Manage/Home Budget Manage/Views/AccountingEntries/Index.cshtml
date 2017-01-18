@@ -1,0 +1,203 @@
+﻿@model IEnumerable<Home_Budget_Manage.Models.AccountingEntries>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">All Our Accounting Entries</h2>
+
+
+
+
+<div class="form-group">
+@Html.DropDownList("EntriesView",
+    new List<SelectListItem>
+    {
+        new SelectListItem{ Text="ALL", Value = "0" },
+        new SelectListItem{ Text="Income", Value = "1" },
+        new SelectListItem{ Text="Expense", Value = "2" },
+        new SelectListItem{ Text="Transfer", Value = "3" }
+    },
+    htmlAttributes: new
+    {
+        onchange = "document.getElementById('TheForm').submit();",
+
+        @class = "form-control col-md-offset-10 col-md-2",
+        style = "width:150px;"
+    })
+</div>
+
+
+@using (Html.BeginForm("Index", "AccountingEntries", FormMethod.Post, new { id = "TheForm" }))
+{
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountingEntries_MTO_FinancialAccounts.accountName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.entryType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_byUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_inDatabse)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        switch (item.entryType)
+        {
+
+            case "Income":
+            <tr class="text-success">
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountingEntries_MTO_FinancialAccounts.accountName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.entryType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.details)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_byUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_inDatabse)
+                </td>
+            </tr>
+                break;
+
+
+            case "Expense":
+            <tr class="text-info">
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountingEntries_MTO_FinancialAccounts.accountName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.entryType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.amount)
+                    <span>-</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.details)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_byUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_inDatabse)
+                </td>
+            </tr>
+                break;
+
+
+            case "Transfer":
+            <tr class="text-danger">
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountingEntries_MTO_FinancialAccounts.accountName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.entryType)
+                </td>
+                <td>
+                    @if (item.amount < 0)
+                    {
+                     @Html.DisplayFor(modelItem => item.amount)
+                     <span>-</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.amount)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.details)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_byUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_inDatabse)
+                </td>
+            </tr>
+                break;
+
+
+            default:
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountingEntries_MTO_FinancialAccounts.accountName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.entryType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.details)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_byUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_inDatabse)
+                </td>
+            </tr>
+                break;
+        }
+    }
+
+</table>
+
+}
+
+
+
+
+
+
+@*<div class="form-group">
+           @Html.LabelFor(model => model.entryType, htmlAttributes: new { @class = "control-label col-md-2" })
+           <div class="col-md-10">
+               @Html.DropDownListFor(model => model.entryType, new List<SelectListItem>
+               {
+                   new SelectListItem{ Text="Income", Value = "1" }
+                   ,new SelectListItem{ Text="Expense", Value = "2" }
+                   ,new SelectListItem{ Text="Transfer", Value = "3" }
+               }
+    , "- Please select -"
+    , htmlAttributes: new { @class = "form-control" })
+           </div>
+       </div>*@

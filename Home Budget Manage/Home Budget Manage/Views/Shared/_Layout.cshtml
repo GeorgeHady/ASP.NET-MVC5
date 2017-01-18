@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body class="navbar-inverse"  >
+    <div class="form-horizontal" style="background: url(../../images/pic4.jpg) repeat; width: 100%; height: 100%; padding-bottom:10%;">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Home Budget Manage", "Index", "UsersView", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "UsersView")</li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Financial Accounts <span class=" caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" >
+                                <li>
+                                    @Html.ActionLink("Show my Financial Accounts", "Index", "Permissions")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Add new Financial Account", "Add", "FinancialAccounts")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Add, Uptade, Delete Permission", "AddUptadeDelete", "Permissions")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Edit Financial Account Information", "", "")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Delete Financial Account", "", "")
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Accounting Entries <span class=" caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("Show all Accounting Entries", "Index", "AccountingEntries")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Income", "Income", "AccountingEntries")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Expense", "Expense", "AccountingEntries")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Transfer", "Transfer", "AccountingEntries")
+                                </li>
+                                <li>
+                                   @* @Html.ActionLink("Delete ..........", "Index", "AccountingEntries")*@
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <div style="background: #ffffff; opacity:.95; padding:20px;
+              border:2px solid white; box-shadow:8px 8px 50px black;
+              border-radius:10px; margin-top:30px; margin-bottom:30px;">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <footer>
+            <div class="container">
+                <br /><hr /><br />
+                <p class="text-center text-success">This web crated by <a href="https://www.facebook.com/George.Ideas.GSH">George Sulieman Hadi</a> after taking course in <a href="https://www.asp.net/mvc">ASP.NET MVC</a> at <a href="http://www.pioneers-academy.com">Pioneers Academy</a>  2017</p>
+                <br />
+           </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

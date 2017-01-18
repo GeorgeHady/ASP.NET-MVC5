@@ -1,0 +1,68 @@
+﻿@model Home_Budget_Manage.Models.Users
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<hr /><br />
+
+
+
+<div class="form-horizontal">
+    @if (ViewBag.passStatus != null)
+    {
+        <ul><li class="text-danger">@ViewBag.passStatus</li></ul>
+    }
+
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.email)</dt>
+        <dd>@Html.DisplayFor(model => model.email)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.userName)</dt>
+        <dd>@Html.DisplayFor(model => model.userName)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.registrationDate)</dt>
+        <dd>@Html.DisplayFor(model => model.registrationDate)</dd>
+
+    </dl>
+    <br />
+
+    <div class="form-group">
+        <div class="panel panel-default col-md-offset-0 col-md-6">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <h4 class="col-md-offset-1 col-md-11 text-danger">Are you sure you want to delete your account?</h4>
+                    </div>
+                    @*<br />*@
+
+                    <div class="form-group col-md-offset-1 col-md-11">
+                        <label class="control-label col-md-4">Enter Pasword</label>
+                        <div class="col-md-12">
+                            @Html.Password("password", "", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            &nbsp;&nbsp; <input type="submit" value="Delete" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+        <div class="form-group col-md-offset-0 col-md-12">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>

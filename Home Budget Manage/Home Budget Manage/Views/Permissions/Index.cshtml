@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Home_Budget_Manage.Models.Permissions>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Your Financial Accounts</h2>
+<br />
+
+<table class="table table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.permissions_MTO_FinancialAccounts.accountName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.permissions_MTO_FinancialAccounts.accountType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.permissions_MTO_FinancialAccounts.otherDetails)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.modificationPermission)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.useAccount)
+        </th>
+        @*<th></th>
+        <th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.permissions_MTO_user.Name)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.permissions_MTO_FinancialAccounts.accountName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.permissions_MTO_FinancialAccounts.accountType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.permissions_MTO_FinancialAccounts.otherDetails)
+        </td>
+        <td class="text-center">
+            @if (item.modificationPermission == true)
+            {
+                <p>@Html.ActionLink("Add/Uptade/Delete Permission", "AddUptadeDelete", new { idAccount = item.id })</p>
+            }
+            else
+            {
+                <p>No</p>
+            }      
+        </td>
+        <td class="text-center">
+            @if (item.useAccount == true)
+            {
+                <p>Yes</p>
+            }
+            else
+            {
+                <p>No</p>
+            }      
+           
+        </td>
+
+        @*<td></td>
+        <td></td>
+        <td>
+            @if (item.modificationPermission == true)
+            {
+                <div>
+                    @Html.ActionLink("Add/Uptade/Delete Permission", "AddUptadeDelete", new { idAccount = item.id }) | 
+                    @Html.ActionLink("Change Permission", "Delete", new { id = item.id }) | 
+                    @Html.ActionLink("Edit Account", "Edit", new { id = item.id })
+                </div>
+            }
+        </td>*@
+    </tr>
+}
+
+</table>

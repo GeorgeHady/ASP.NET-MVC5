@@ -1,0 +1,23 @@
+﻿<h2>Home</h2>
+<hr />
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <p class="text-success">@ViewBag.SuccessMessage</p>
+}
+<br />
+@Html.AntiForgeryToken()
+
+<div class="row" style="padding-bottom:500px">
+    <div class="col-md-6">
+        <div class="text-primary">
+           @* @Html.Action("LoginPartial", "UsersView")*@
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="text-success">
+              @*  @Html.Action("RegisterPartial", "UsersView")*@
+        </div>
+    </div>
+</div>
+

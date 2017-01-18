@@ -1,0 +1,70 @@
+﻿@model Home_Budget_Manage.Models.Permissions
+
+<h2>Add new Permission on your Financial Accounts</h2>
+<hr />
+
+@if (ViewBag.StatusMessage != null)
+{
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <br />
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary( "", new { @class = "text-danger" })
+
+       @* @Html.HiddenFor(model => model.id)*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FK_Users_id, "User", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("FK_Users_id", null, "- Select User -", htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FK_FinancialAccounts_id, "Financial Account", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("FK_FinancialAccounts_id",null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.modificationPermission, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.modificationPermission)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.useAccount, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.useAccount)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="submit" name="submitButton" value="Add" class="btn btn-success"  style="padding-left:3em;padding-right:3em" />
+                <input type="submit" name="submitButton" value="Update" class="btn btn-primary" style="padding-left:1.5em;padding-right:1.5em" />
+                <input type="submit" name="submitButton" value="Delete" class="btn btn-danger" style="padding-left:1em;padding-right:1em" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

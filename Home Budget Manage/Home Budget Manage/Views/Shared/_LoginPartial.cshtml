@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNet.Identity
+
+@if (Session["userId"] != null)
+{
+    //using (Html.BeginForm("LogOff", "UsersView", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    //{
+    @*@Html.AntiForgeryToken()*@
+
+    <ul class="nav navbar-nav navbar-right">
+        @* <li>@Html.ActionLink(Session["userName"].ToString(), "Details", "UsersView", routeValues: null, htmlAttributes: new { title = "Manage your Account" })</li>*@
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                @Session["userName"] 
+                <spam class="glyphicon glyphicon-user"> </spam>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    @Html.ActionLink("Your Details", "Details", "UsersView")
+                </li>
+                <li>
+                    @Html.ActionLink("Log out", "Logout", "UsersView", routeValues: null, htmlAttributes: new { title = "Manage your Account" })
+                </li> 
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon">&#xe019;</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    @Html.ActionLink("Edit your Account information", "Edit", "UsersView")
+                </li>
+                <li>
+                    @Html.ActionLink("Change Password", "ChangePassword", "UsersView")
+                </li>
+                <li>
+                    @Html.ActionLink("Delete your Account", "Delete", "UsersView")
+                </li>
+            </ul>
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">    
+        <li>@Html.ActionLink("Log in", "Login", "UsersView", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Register", "Register", "UsersView", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    </ul>
+}

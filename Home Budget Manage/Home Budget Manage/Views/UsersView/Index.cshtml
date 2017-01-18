@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Home_Budget_Manage.Models.AccountsSummary>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.accountName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accountType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accountBalance)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountBalance)
+        </td>
+       
+    </tr>
+}
+
+</table>

@@ -1,0 +1,43 @@
+﻿@model Home_Budget_Manage.Models.Users
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Your Details.</h2>
+<hr />
+
+<div> 
+    @if (ViewBag.SuccessMessage != null)
+    {
+    <p class="text-success">@ViewBag.SuccessMessage</p>
+    }
+    <br />
+    <dl class="dl-horizontal">
+        <dt>     @Html.DisplayNameFor(model => model.Name)</dt>
+        <dd>     @Html.DisplayFor(model => model.Name)</dd>
+
+        <dt>     @Html.DisplayNameFor(model => model.email)</dt>
+        <dd>     @Html.DisplayFor(model => model.email) </dd>
+
+        <dt>     @Html.DisplayNameFor(model => model.userName)</dt>
+        <dd>     @Html.DisplayFor(model => model.userName)</dd>
+
+        <dt>     @Html.DisplayNameFor(model => model.registrationDate)        </dt>
+        <dd>     @Html.DisplayFor(model => model.registrationDate)        </dd>
+    </dl>
+</div>
+
+@if (Model != null)
+{
+    <div>
+        @Html.ActionLink("Edit your Details", "Edit")
+    </div>
+    <div>
+        @Html.ActionLink("Delete your account", "Delete")
+    </div>
+}
+    <div>
+        @Html.ActionLink("Back to Home", "Index")
+    </div>
+
